@@ -1,0 +1,139 @@
+.opening-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stars-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+.opening-content {
+  text-align: center;
+  z-index: 10;
+}
+
+.text-line {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out;
+  margin-bottom: 20px;
+}
+
+.text-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.korean-text {
+  font-size: 3rem;
+  color: #e94560;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+}
+
+.teacher-name {
+  font-size: 4rem;
+  color: white;
+  font-weight: 600;
+  text-shadow: 0 0 30px rgba(233, 69, 96, 0.5);
+}
+
+.subtitle span {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-style: italic;
+}
+
+.enter-button {
+  margin-top: 40px;
+  padding: 20px 60px;
+  background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+}
+
+.enter-button.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.enter-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 40px rgba(233, 69, 96, 0.5);
+}
+
+.button-text {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: 600;
+}
+
+.button-subtext {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.floating-petals {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.petal {
+  position: absolute;
+  top: -50px;
+  width: 15px;
+  height: 15px;
+  background: linear-gradient(135deg, #ffb7c5, #ff8fa3);
+  border-radius: 0 100% 0 100%;
+  animation: fall linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-50px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}

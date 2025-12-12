@@ -1,0 +1,183 @@
+.prayer-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.candles {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  pointer-events: none;
+}
+
+.candle {
+  position: absolute;
+  bottom: 20px;
+}
+
+.flame {
+  width: 20px;
+  height: 40px;
+  background: linear-gradient(180deg, #fff 0%, #ffcc00 30%, #ff6600 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker 0.5s ease-in-out infinite alternate;
+  position: relative;
+}
+
+.flame-inner {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 20px;
+  background: linear-gradient(180deg, #fff 0%, #ffffcc 100%);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+}
+
+@keyframes flicker {
+  0% { transform: scale(1) rotate(-2deg); }
+  100% { transform: scale(1.1) rotate(2deg); }
+}
+
+.candle-body {
+  width: 25px;
+  height: 60px;
+  background: linear-gradient(90deg, #eee 0%, #fff 50%, #eee 100%);
+  border-radius: 3px;
+  margin: 0 auto;
+  margin-top: -5px;
+}
+
+.prayer-content {
+  text-align: center;
+  z-index: 10;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.prayer-title .emoji {
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.prayer-title .korean {
+  font-size: 3.5rem;
+  color: #ffd700;
+  font-weight: 600;
+  display: block;
+}
+
+.prayer-title .english {
+  font-size: 1.3rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 300;
+  display: block;
+  margin-top: 5px;
+}
+
+.prayer-intro {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  margin: 20px 0 30px;
+}
+
+.prayer-intro .intro-trans {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.prayers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.prayer-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  border-radius: 15px;
+  padding: 15px 20px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.prayer-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.prayer-star {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.prayer-text {
+  text-align: left;
+}
+
+.korean-prayer {
+  color: #ffd700;
+  font-size: 1.1rem;
+  margin: 0 0 5px 0;
+}
+
+.english-prayer {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.95rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.final-blessing {
+  animation: fadeIn 1s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.blessing-text {
+  font-size: 1.8rem;
+  color: white;
+  margin: 0;
+  text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+}
+
+.blessing-sub {
+  color: #ffd700;
+  font-size: 1.2rem;
+  margin: 10px 0 0;
+}
+
+.floating-stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floating-star {
+  position: absolute;
+  font-size: 1rem;
+  animation: twinkleStar ease-in-out infinite;
+}
+
+@keyframes twinkleStar {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}

@@ -1,0 +1,231 @@
+.indonesia-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #dc2f2f 0%, #c41e3a 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.indonesia-content {
+  max-width: 1200px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+.indonesia-title {
+  margin-bottom: 20px;
+}
+
+.indonesia-title .flag {
+  font-size: 3rem;
+  margin-right: 15px;
+}
+
+.indonesia-title .name {
+  font-size: 3rem;
+  color: white;
+  font-weight: 600;
+}
+
+.indonesia-title .subtitle {
+  display: block;
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-top: 5px;
+}
+
+.section-tabs {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.section-tab {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.section-tab:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.section-tab.active {
+  background: white;
+  color: #dc2f2f;
+  border-color: white;
+}
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1000px) {
+  .destinations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .destinations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.destination-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  padding: 20px 15px;
+  transition: all 0.3s ease;
+}
+
+.destination-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+}
+
+.destination-card .dest-emoji {
+  font-size: 2.5rem;
+}
+
+.destination-card h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.dest-highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.dest-highlights span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.8rem;
+}
+
+.foods-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 900px) {
+  .foods-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.food-item {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-align: left;
+}
+
+.food-item .food-emoji {
+  font-size: 2.5rem;
+}
+
+.food-item h4 {
+  color: white;
+  margin: 0 0 5px 0;
+  font-size: 1.1rem;
+}
+
+.food-item p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.tips-section {
+  margin-bottom: 20px;
+}
+
+.qris-banner {
+  background: white;
+  border-radius: 20px;
+  padding: 25px 40px;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.qris-banner h3 {
+  color: #dc2f2f;
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+}
+
+.qris-banner p {
+  color: #333;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.tips-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+}
+
+@media (max-width: 900px) {
+  .tips-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tip-card {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  text-align: left;
+}
+
+.tip-emoji {
+  font-size: 1.8rem;
+}
+
+.tip-card p {
+  color: white;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.indonesia-invite {
+  margin-top: 25px;
+}
+
+.indonesia-invite p {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.indonesia-invite .invite-trans {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 5px;
+}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { SNOWFLAKE_STYLES } from '../utils/randomStyles';
 import './Winter.css';
 
@@ -23,12 +23,24 @@ const gifts = [
 export default function Winter() {
   const [openedGifts, setOpenedGifts] = useState([]);
   const [currentGiftMessage, setCurrentGiftMessage] = useState(null);
+  const timeoutRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
+  }, []);
 
   const openGift = (gift) => {
     if (!openedGifts.includes(gift.id)) {
       setOpenedGifts([...openedGifts, gift.id]);
       setCurrentGiftMessage(gift);
-      setTimeout(() => setCurrentGiftMessage(null), 3000);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(() => setCurrentGiftMessage(null), 3000);
     }
   };
 

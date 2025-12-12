@@ -7,10 +7,12 @@ export function MusicProvider({ children }) {
   const [volume, setVolume] = useState(0.5);
   const audioRef = useRef(null);
 
+  // Initialize audio element once on mount. Volume is set separately
+  // in a dedicated effect to avoid recreating the audio element.
   useEffect(() => {
     audioRef.current = new Audio();
     audioRef.current.loop = true;
-    audioRef.current.volume = volume;
+    audioRef.current.volume = 0.5; // Default volume
     
     return () => {
       if (audioRef.current) {
@@ -18,7 +20,6 @@ export function MusicProvider({ children }) {
         audioRef.current = null;
       }
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

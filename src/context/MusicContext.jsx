@@ -2,6 +2,9 @@ import { createContext, useState, useRef, useCallback, useEffect } from 'react';
 
 export const MusicContext = createContext();
 
+// Default music source - can be replaced with an actual music file URL
+const DEFAULT_MUSIC_SRC = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+
 export function MusicProvider({ children }) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
@@ -13,6 +16,8 @@ export function MusicProvider({ children }) {
     audioRef.current = new Audio();
     audioRef.current.loop = true;
     audioRef.current.volume = 0.5; // Default volume
+    // Set default music source
+    audioRef.current.src = DEFAULT_MUSIC_SRC;
     
     return () => {
       if (audioRef.current) {

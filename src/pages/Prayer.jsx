@@ -12,6 +12,14 @@ const prayers = [
   { korean: "꿈이 이루어지세요", english: "May your dreams come true" }
 ];
 
+// Background brightness calculation constants
+const BRIGHTNESS_BASE_DARK = 10;
+const BRIGHTNESS_BASE_MID = 15;
+const BRIGHTNESS_BASE_LIGHT = 20;
+const BRIGHTNESS_MULTIPLIER_DARK = 0.1;
+const BRIGHTNESS_MULTIPLIER_MID = 0.15;
+const BRIGHTNESS_MULTIPLIER_LIGHT = 0.2;
+
 export default function Prayer() {
   const [litCandles, setLitCandles] = useState([]);
   const [showFinalBlessing, setShowFinalBlessing] = useState(false);
@@ -35,9 +43,9 @@ export default function Prayer() {
       className="prayer-page"
       style={{
         background: `linear-gradient(180deg, 
-          hsl(220, 30%, ${10 + brightness * 0.1}%) 0%, 
-          hsl(220, 35%, ${15 + brightness * 0.15}%) 50%, 
-          hsl(220, 40%, ${20 + brightness * 0.2}%) 100%)`
+          hsl(220, 30%, ${BRIGHTNESS_BASE_DARK + brightness * BRIGHTNESS_MULTIPLIER_DARK}%) 0%, 
+          hsl(220, 35%, ${BRIGHTNESS_BASE_MID + brightness * BRIGHTNESS_MULTIPLIER_MID}%) 50%, 
+          hsl(220, 40%, ${BRIGHTNESS_BASE_LIGHT + brightness * BRIGHTNESS_MULTIPLIER_LIGHT}%) 100%)`
       }}
     >
       <div className="prayer-content">

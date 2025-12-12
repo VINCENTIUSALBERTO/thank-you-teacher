@@ -13,6 +13,15 @@ const snowmanParts = [
   { id: 'scarf', type: 'accessory', emoji: '🧣', correctY: 220 }
 ];
 
+const getPartFontSize = (size) => {
+  const fontSizes = {
+    large: '5rem',
+    medium: '4rem',
+    small: '3rem'
+  };
+  return fontSizes[size] || '2.5rem';
+};
+
 const initialPositions = {
   'ball-large': { x: 100, y: 450 },
   'ball-medium': { x: 200, y: 100 },
@@ -96,45 +105,42 @@ export default function Winter() {
     }
   }, [dragging]);
 
-  const handleMouseUp = useCallback(() => {
-    if (dragging && dropZoneRef.current) {
-      const dropZone = dropZoneRef.current.getBoundingClientRect();
-      const part = snowmanParts.find(p => p.id === dragging);
-      const partPos = positions[dragging];
+  const checkAndPlacePart = useCallback(() => {
+    if (!dragging || !dropZoneRef.current) {
+      setDragging(null);
+      return;
+    }
+
+    const dropZone = dropZoneRef.current.getBoundingClientRect();
+    const part = snowmanParts.find(p => p.id === dragging);
+    const partPos = positions[dragging];
+    
+    const dropZoneCenterX = dropZone.left + dropZone.width / 2;
+    const partCenterX = partPos.x + 40;
+    const partCenterY = partPos.y + 40;
+    
+    const xDistance = Math.abs(partCenterX - dropZoneCenterX);
+    const yDistance = Math.abs(partCenterY - (dropZone.top + part.correctY));
+    
+    if (xDistance < 80 && yDistance < 50) {
+      // Check if all previous required parts are placed
+      const ballParts = snowmanParts.filter(p => p.type === 'ball');
+      const requiredParts = ballParts
+        .slice(0, ballParts.indexOf(part) + 1)
+        .map(p => p.id);
       
-      const dropZoneCenterX = dropZone.left + dropZone.width / 2;
-      const partCenterX = partPos.x + 40;
-      const partCenterY = partPos.y + 40;
+      const canPlace = part.type === 'accessory' || 
+                      requiredParts.every(id => placedParts.includes(id) || id === dragging);
       
-      const xDistance = Math.abs(partCenterX - dropZoneCenterX);
-      const yDistance = Math.abs(partCenterY - (dropZone.top + part.correctY));
-      
-      if (xDistance < 80 && yDistance < 50) {
-        // Check if all previous required parts are placed
-        const requiredParts = snowmanParts
-          .filter(p => p.type === 'ball')
-          .slice(0, snowmanParts.filter(p => p.type === 'ball').indexOf(part) + 1)
-          .map(p => p.id);
-        
-        const canPlace = part.type === 'accessory' || 
-                        requiredParts.every(id => placedParts.includes(id) || id === dragging);
-        
-        if (canPlace) {
-          setPlacedParts(prev => [...prev, dragging]);
-          setPositions(prev => ({
-            ...prev,
-            [dragging]: {
-              x: dropZone.left - 40 + (dropZone.width / 2),
-              y: dropZone.top + part.correctY - 40
-            }
-          }));
-        } else {
-          // Return to original position
-          setPositions(prev => ({
-            ...prev,
-            [dragging]: initialPositions[dragging]
-          }));
-        }
+      if (canPlace) {
+        setPlacedParts(prev => [...prev, dragging]);
+        setPositions(prev => ({
+          ...prev,
+          [dragging]: {
+            x: dropZone.left - 40 + (dropZone.width / 2),
+            y: dropZone.top + part.correctY - 40
+          }
+        }));
       } else {
         // Return to original position
         setPositions(prev => ({
@@ -142,59 +148,23 @@ export default function Winter() {
           [dragging]: initialPositions[dragging]
         }));
       }
+    } else {
+      // Return to original position
+      setPositions(prev => ({
+        ...prev,
+        [dragging]: initialPositions[dragging]
+      }));
     }
     setDragging(null);
   }, [dragging, positions, placedParts]);
 
+  const handleMouseUp = useCallback(() => {
+    checkAndPlacePart();
+  }, [checkAndPlacePart]);
+
   const handleTouchEnd = useCallback(() => {
-    if (dragging && dropZoneRef.current) {
-      const dropZone = dropZoneRef.current.getBoundingClientRect();
-      const part = snowmanParts.find(p => p.id === dragging);
-      const partPos = positions[dragging];
-      
-      const dropZoneCenterX = dropZone.left + dropZone.width / 2;
-      const partCenterX = partPos.x + 40;
-      const partCenterY = partPos.y + 40;
-      
-      const xDistance = Math.abs(partCenterX - dropZoneCenterX);
-      const yDistance = Math.abs(partCenterY - (dropZone.top + part.correctY));
-      
-      if (xDistance < 80 && yDistance < 50) {
-        // Check if all previous required parts are placed
-        const requiredParts = snowmanParts
-          .filter(p => p.type === 'ball')
-          .slice(0, snowmanParts.filter(p => p.type === 'ball').indexOf(part) + 1)
-          .map(p => p.id);
-        
-        const canPlace = part.type === 'accessory' || 
-                        requiredParts.every(id => placedParts.includes(id) || id === dragging);
-        
-        if (canPlace) {
-          setPlacedParts(prev => [...prev, dragging]);
-          setPositions(prev => ({
-            ...prev,
-            [dragging]: {
-              x: dropZone.left - 40 + (dropZone.width / 2),
-              y: dropZone.top + part.correctY - 40
-            }
-          }));
-        } else {
-          // Return to original position
-          setPositions(prev => ({
-            ...prev,
-            [dragging]: initialPositions[dragging]
-          }));
-        }
-      } else {
-        // Return to original position
-        setPositions(prev => ({
-          ...prev,
-          [dragging]: initialPositions[dragging]
-        }));
-      }
-    }
-    setDragging(null);
-  }, [dragging, positions, placedParts]);
+    checkAndPlacePart();
+  }, [checkAndPlacePart]);
 
   useEffect(() => {
     if (dragging) {
@@ -255,7 +225,7 @@ export default function Winter() {
             style={{
               left: `${positions[part.id].x}px`,
               top: `${positions[part.id].y}px`,
-              fontSize: part.size === 'large' ? '5rem' : part.size === 'medium' ? '4rem' : part.size === 'small' ? '3rem' : '2.5rem',
+              fontSize: getPartFontSize(part.size),
               cursor: placedParts.includes(part.id) ? 'default' : 'grab'
             }}
             onMouseDown={(e) => handleMouseDown(e, part.id)}

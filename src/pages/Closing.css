@@ -1,0 +1,186 @@
+.closing-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #e91e63 0%, #9c27b0 50%, #673ab7 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hearts-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -50px;
+  animation: floatUp linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% {
+    transform: translateY(-100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.closing-content {
+  text-align: center;
+  z-index: 10;
+  padding: 20px;
+  max-width: 800px;
+}
+
+.closing-text,
+.teacher-message,
+.final-thanks,
+.signature {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease;
+}
+
+.closing-text.visible,
+.teacher-message.visible,
+.final-thanks.visible,
+.signature.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.korean-quote {
+  font-size: 2.5rem;
+  color: white;
+  margin: 0;
+  font-weight: 300;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.english-quote {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 10px 0 0;
+  font-style: italic;
+}
+
+.teacher-message {
+  margin: 40px 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 30px 40px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.teacher-message h2 {
+  color: white;
+  font-size: 1.8rem;
+  margin: 0 0 15px;
+}
+
+.teacher-message p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin: 0;
+}
+
+.final-thanks {
+  margin: 30px 0;
+}
+
+.thanks-korean {
+  font-size: 3.5rem;
+  color: #ffd700;
+  font-weight: 700;
+  text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.thanks-english {
+  font-size: 1.5rem;
+  color: white;
+  margin-top: 10px;
+}
+
+.signature {
+  margin-top: 30px;
+}
+
+.signature .from {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.signature .name {
+  color: white;
+  font-size: 1.3rem;
+  margin: 10px 0;
+  font-weight: 600;
+}
+
+.final-bow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.bow-emoji {
+  font-size: 3rem;
+  animation: bow 2s ease-in-out infinite;
+}
+
+@keyframes bow {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+
+.bow-text {
+  color: #ffd700;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.sparkles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.sparkles.visible {
+  opacity: 1;
+}
+
+.sparkle {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: twinkle 1.5s ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.5); }
+  50% { opacity: 1; transform: scale(1.2); }
+}

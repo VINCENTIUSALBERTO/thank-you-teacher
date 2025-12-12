@@ -1,0 +1,17 @@
+.app {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.page-container {
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.page-container.transitioning {
+  opacity: 0;
+  transform: scale(0.95);
+}

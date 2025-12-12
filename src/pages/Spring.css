@@ -1,0 +1,157 @@
+.spring-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cherry-blossoms {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.blossom {
+  position: absolute;
+  top: -30px;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #ffb7c5, #ffc0cb);
+  border-radius: 50% 0 50% 50%;
+  animation: fallBlossom linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fallBlossom {
+  0% {
+    transform: translateY(-30px) rotate(0deg) translateX(0);
+    opacity: 0;
+  }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  100% {
+    transform: translateY(100vh) rotate(360deg) translateX(50px);
+    opacity: 0;
+  }
+}
+
+.spring-content {
+  text-align: center;
+  z-index: 10;
+  padding: 20px;
+}
+
+.season-title .korean {
+  display: block;
+  font-size: 4rem;
+  color: #d63384;
+  font-weight: 600;
+}
+
+.season-title .english {
+  display: block;
+  font-size: 1.5rem;
+  color: #6c757d;
+  font-weight: 300;
+}
+
+.season-desc {
+  font-size: 1.1rem;
+  color: #495057;
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+.flowers-container {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  margin: 40px 0;
+  flex-wrap: wrap;
+}
+
+.flower-box {
+  width: 180px;
+  height: 180px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.flower-front,
+.flower-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s;
+}
+
+.flower-front {
+  background: rgba(255, 255, 255, 0.8);
+  border: 2px solid #d63384;
+}
+
+.flower-back {
+  background: linear-gradient(135deg, #d63384, #e91e8c);
+  transform: rotateY(180deg);
+  padding: 15px;
+}
+
+.flower-box.open .flower-front {
+  transform: rotateY(180deg);
+}
+
+.flower-box.open .flower-back {
+  transform: rotateY(0deg);
+}
+
+.flower-emoji {
+  font-size: 4rem;
+}
+
+.flower-text {
+  color: #d63384;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+.flower-message {
+  color: white;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.spring-places {
+  margin-top: 30px;
+}
+
+.spring-places h3 {
+  color: #d63384;
+  margin-bottom: 15px;
+}
+
+.places-list {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.place-tag {
+  background: white;
+  color: #d63384;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 10px rgba(214, 51, 132, 0.2);
+}

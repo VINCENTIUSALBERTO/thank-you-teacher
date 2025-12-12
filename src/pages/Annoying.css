@@ -1,0 +1,155 @@
+.annoying-page {
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.annoying-content {
+  text-align: center;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 50px;
+}
+
+.annoying-title {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.annoying-title .emoji {
+  font-size: 3rem;
+}
+
+.annoying-title span:last-child {
+  font-size: 2.5rem;
+  color: white;
+  font-weight: 600;
+}
+
+.annoying-desc {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+}
+
+.attempts-counter {
+  background: rgba(255, 255, 255, 0.3);
+  padding: 10px 30px;
+  border-radius: 20px;
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.escaping-button {
+  position: absolute;
+  padding: 15px 40px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff6b6b, #ffa500);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+}
+
+.escaping-button:hover {
+  box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
+}
+
+.escaping-button.caught {
+  background: linear-gradient(135deg, #00c853, #69f0ae);
+  animation: celebrate 0.5s ease;
+}
+
+@keyframes celebrate {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50% { transform: translate(-50%, -50%) scale(1.2); }
+}
+
+.success-message {
+  position: absolute;
+  bottom: 120px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px 40px;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-message p {
+  margin: 0;
+  color: #333;
+}
+
+.success-message p:first-child {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.success-message .sub-message {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.success-message .hint {
+  font-size: 0.9rem;
+  color: #a18cd1;
+  font-weight: 500;
+}
+
+.hint-text {
+  position: absolute;
+  bottom: 150px;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.hint-text p {
+  margin: 0;
+}
+
+.floating-emojis {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floating-emoji {
+  position: absolute;
+  font-size: 2.5rem;
+  bottom: 10%;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}

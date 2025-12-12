@@ -2,8 +2,9 @@ import { createContext, useState, useRef, useCallback, useEffect } from 'react';
 
 export const MusicContext = createContext();
 
-// Default music source - can be replaced with an actual music file URL
-const DEFAULT_MUSIC_SRC = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+// Default music source - using HTTPS to avoid mixed content issues
+// This should be replaced with an actual music file uploaded to the project
+const DEFAULT_MUSIC_SRC = 'https://cdn.pixabay.com/audio/2022/03/15/audio_11b0c2c41a.mp3';
 
 export function MusicProvider({ children }) {
   const [isPlaying, setIsPlaying] = useState(false);

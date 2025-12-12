@@ -32,108 +32,258 @@
 .opening-content {
   text-align: center;
   z-index: 10;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.text-line {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 1s ease-out;
-  margin-bottom: 20px;
+/* Hint Text */
+.hint-text {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  animation: fadeInDown 1s ease-out;
 }
 
-.text-line.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.korean-text {
-  font-size: 3rem;
+.korean-hint {
+  display: block;
+  font-size: 2.5rem;
   color: #e94560;
-  font-weight: 300;
-  letter-spacing: 0.2em;
-}
-
-.teacher-name {
-  font-size: 4rem;
-  color: white;
   font-weight: 600;
-  text-shadow: 0 0 30px rgba(233, 69, 96, 0.5);
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
 }
 
-.subtitle span {
-  font-size: 1.5rem;
+.english-hint {
+  display: block;
+  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.7);
   font-style: italic;
 }
 
-.enter-button {
-  margin-top: 40px;
-  padding: 20px 60px;
-  background: linear-gradient(135deg, #e94560 0%, #ff6b6b 100%);
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 0.8s ease-out;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-}
-
-.enter-button.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.enter-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 10px 40px rgba(233, 69, 96, 0.5);
-}
-
-.button-text {
-  font-size: 1.5rem;
-  color: white;
-  font-weight: 600;
-}
-
-.button-subtext {
-  font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.floating-petals {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-.petal {
-  position: absolute;
-  top: -50px;
-  width: 15px;
-  height: 15px;
-  background: linear-gradient(135deg, #ffb7c5, #ff8fa3);
-  border-radius: 0 100% 0 100%;
-  animation: fall linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(-50px) rotate(0deg);
+@keyframes fadeInDown {
+  from {
     opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
   }
-  10% {
-    opacity: 0.6;
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
   }
-  90% {
-    opacity: 0.6;
+}
+
+/* Treasure Chest */
+.treasure-chest {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  height: 200px;
+  perspective: 1000px;
+}
+
+.chest-body {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 140px;
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  border: 8px solid #d4af37;
+  border-radius: 10px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chest-lock {
+  font-size: 4rem;
+  filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.5));
+  transition: all 0.5s ease;
+}
+
+.treasure-chest.unlocking .chest-lock {
+  animation: unlockShake 0.5s ease;
+  opacity: 0;
+}
+
+@keyframes unlockShake {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-15deg); }
+  75% { transform: rotate(15deg); }
+}
+
+.chest-lid {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(135deg, #c41e3a 0%, #8b0000 100%);
+  border: 8px solid #d4af37;
+  border-radius: 10px 10px 0 0;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  transform-origin: bottom;
+  transition: transform 1s ease;
+}
+
+.treasure-chest.opened .chest-lid {
+  transform: rotateX(-120deg);
+}
+
+/* Chest Light Effect */
+.chest-light {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  opacity: 0;
+  animation: lightExpand 2s ease-out forwards;
+}
+
+.light-rays {
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 0%, rgba(255, 215, 0, 0.4) 30%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes lightExpand {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.5);
+  }
+  50% {
+    opacity: 1;
   }
   100% {
-    transform: translateY(100vh) rotate(720deg);
+    opacity: 0.8;
+    transform: translate(-50%, -50%) scale(2);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Sparkles */
+.sparkles-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: gold;
+  border-radius: 50%;
+  animation: sparkleRise 1.5s ease-out forwards;
+  box-shadow: 0 0 10px gold;
+}
+
+@keyframes sparkleRise {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-200px) scale(1);
     opacity: 0;
+  }
+}
+
+/* Hidden Key */
+.hidden-key {
+  position: absolute;
+  font-size: 3rem;
+  cursor: grab;
+  transform: translate(-50%, -50%);
+  opacity: 0.4;
+  filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+  animation: keyFloat 3s ease-in-out infinite;
+  transition: opacity 0.3s ease;
+  touch-action: none;
+  user-select: none;
+  z-index: 100;
+}
+
+.hidden-key:hover {
+  opacity: 0.8;
+  animation: keyGlow 1s ease-in-out infinite;
+}
+
+.hidden-key.found {
+  opacity: 1;
+  animation: none;
+}
+
+.hidden-key.dragging {
+  cursor: grabbing;
+  transform: translate(-50%, -50%) scale(1.2);
+  z-index: 1000;
+}
+
+@keyframes keyFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-10px);
+    opacity: 0.6;
+  }
+}
+
+@keyframes keyGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.9));
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .treasure-chest {
+    width: 250px;
+    height: 170px;
+  }
+  
+  .chest-body {
+    height: 120px;
+  }
+  
+  .chest-lid {
+    height: 70px;
+  }
+  
+  .chest-lock {
+    font-size: 3rem;
+  }
+  
+  .hidden-key {
+    font-size: 2.5rem;
+  }
+  
+  .korean-hint {
+    font-size: 2rem;
+  }
+  
+  .english-hint {
+    font-size: 1rem;
   }
 }
